@@ -24,6 +24,7 @@ namespace Sakklepesek_FarkasLevente
         public int meret = 10;
         public Button[,] negyzetek;
         Babu currentBabu;
+        Babu huszár;
         public MainWindow()
         {
             
@@ -51,11 +52,30 @@ namespace Sakklepesek_FarkasLevente
             
             stepList.Add(step2);
 
+            
 
             currentBabu = new Babu(negyzetek, startPos,stepList,"Gyalog");
 
+
+
+            List<int> startPos2 = new List<int>();
+            startPos2.Add(0);
+            startPos2.Add(2);
+
+            List<List<int>> stepList2 = new List<List<int>>();
+            List<int> step3 = new List<int>();
+            step3.Add(1);
+            step3.Add(0);
+            stepList2.Add(step3);
+            List<int> step4 = new List<int>();
+            step4.Add(-1);
+            step4.Add(0);
+            stepList2.Add(step4);
+
+            huszár = new Babu(negyzetek, startPos2, stepList2, "Huszár");
+
             HighLightButtons(currentBabu.lephetOda);
-            //negyzetek[3,1].Background = Brushes.Blue;
+            
         }
         
 
@@ -107,7 +127,11 @@ namespace Sakklepesek_FarkasLevente
                     List<int> posok = new List<int>();
                     posok.Add(currentPos[0] + stepList[i][0]);
                     posok.Add(currentPos[1] + stepList[i][1]);
-                    lephetOda.Add(posok);
+                    //if(negyzetek[posok[0],posok[1]].Content == " ")
+                    //{
+                        lephetOda.Add(posok);
+                    //}
+                    
                 }
             }
 
