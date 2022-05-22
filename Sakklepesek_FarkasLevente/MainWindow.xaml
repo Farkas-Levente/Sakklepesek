@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sakklepesek_FarkasLevente"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Name="ablak" Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Canvas Name="tabla" HorizontalAlignment="Left" Height="305" Margin="94,64,0,0" VerticalAlignment="Top" Width="588"/>
+
     </Grid>
 </Window>
