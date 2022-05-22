@@ -273,10 +273,14 @@ namespace Sakklepesek_FarkasLevente
 
         private void EgysegValaszto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(egysegValaszto.SelectedItem.ToString() == "Gyalog")
+            
+            if(egysegValaszto.SelectedItem.ToString() == "Huszár")
             {
-                negyzetek[0, 0].Background = Brushes.Green;
+                //currentBabu = huszár;
             }
+
+
+            posText.Content = " "+ (GetIndex(currentBabu.currentButton)[0] + 1) + "," + (GetIndex(currentBabu.currentButton)[1] + 1);
         }
     }
 
