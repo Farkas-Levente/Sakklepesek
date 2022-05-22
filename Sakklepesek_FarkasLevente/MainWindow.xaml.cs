@@ -62,21 +62,25 @@ namespace Sakklepesek_FarkasLevente
 
             public Babu(Button[,] negyzetek,List<int> startPos, List<List<int>> stepList,string uniCode)
             {
-                lephetOda = new List<List<int>>();
+                
                 this.stepList = stepList;
                 currentButton = negyzetek[startPos[0], startPos[1]];
                 currentButton.Content = uniCode;
-
+                UjraSzamolLehetsegesLepeseket(startPos);
+                
+                
+            }
+            public  void UjraSzamolLehetsegesLepeseket(List<int> currentPos)
+            {
+                lephetOda = new List<List<int>>();
                 for (int i = 0; i < stepList.Count; i++)
                 {
                     List<int> posok = new List<int>();
-                    posok.Add(startPos[0] + stepList[i][0]);
-                    posok.Add(startPos[1] + stepList[i][1]);
+                    posok.Add(currentPos[0] + stepList[i][0]);
+                    posok.Add(currentPos[1] + stepList[i][1]);
                     lephetOda.Add(posok);
                 }
-                
             }
-
 
         }
 
