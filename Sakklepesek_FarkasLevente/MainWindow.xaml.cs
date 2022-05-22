@@ -28,6 +28,12 @@ namespace Sakklepesek_FarkasLevente
         {
             
             InitializeComponent();
+
+
+            egysegValaszto.Items.Add("Gyalog");
+            egysegValaszto.Items.Add("Bástya");
+            egysegValaszto.Items.Add("Futó");
+            egysegValaszto.Items.Add("Huszár");
             TablaKialakitasa();
 
             List<int> startPos = new List<int>();
@@ -217,8 +223,14 @@ namespace Sakklepesek_FarkasLevente
             }
             return null;
         }
-       
-        
+
+        private void EgysegValaszto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(egysegValaszto.SelectedItem.ToString() == "Gyalog")
+            {
+                negyzetek[0, 0].Background = Brushes.Green;
+            }
+        }
     }
 
 }
