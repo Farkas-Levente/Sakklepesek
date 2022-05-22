@@ -39,8 +39,8 @@ namespace Sakklepesek_FarkasLevente
             step1.Add(1);
             step1.Add(1);
             List<int> step2 = new List<int>();
-            step2.Add(2);
-            step2.Add(1);
+            step2.Add(-1);
+            step2.Add(-1);
             stepList.Add(step1);
             stepList.Add(step2);
 
@@ -55,13 +55,22 @@ namespace Sakklepesek_FarkasLevente
         {
            public string uniCode;
            public Button currentButton;
+            
            public List<List<int>> stepList;
            Button[,] negyzetek;
            public List<List<int>> lephetOda;
 
             public void MoveTo(List<int> nextPos)
             {
-                //if (!lephetOda.Contains(nextPos)) return;
+                bool mehet = false;
+                foreach (var pos in lephetOda)
+                {
+                    if(pos[0] == nextPos[0] && pos[1] == nextPos[1])
+                    {
+                        mehet = true;
+                    }
+                }
+                if (!mehet) return;
                 currentButton.Content = "";
                 
                 currentButton = negyzetek[nextPos[0], nextPos[1]];
@@ -184,8 +193,10 @@ namespace Sakklepesek_FarkasLevente
         private void Mozgat(object sender, RoutedEventArgs e)
         {
             currentBabu.MoveTo(GetIndex((Button)sender));
+            
             UjraSzinezTabla();
             HighLightButtons(currentBabu.lephetOda);
+            
         }
         private List<int> GetIndex(Button button)
         {
