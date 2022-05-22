@@ -23,7 +23,7 @@ namespace Sakklepesek_FarkasLevente
     {
         public int meret = 10;
         public Button[,] negyzetek;
-
+        Babu currentBabu;
         public MainWindow()
         {
             
@@ -45,7 +45,7 @@ namespace Sakklepesek_FarkasLevente
             stepList.Add(step2);
 
 
-            Babu currentBabu = new Babu(negyzetek, startPos,stepList,"gyalog");
+            currentBabu = new Babu(negyzetek, startPos,stepList,"gyalog");
             HighLightButtons(currentBabu.lephetOda);
             //negyzetek[3,1].Background = Brushes.Blue;
         }
@@ -56,15 +56,25 @@ namespace Sakklepesek_FarkasLevente
            public string uniCode;
            public Button currentButton;
            public List<List<int>> stepList;
-
+           Button[,] negyzetek;
            public List<List<int>> lephetOda;
 
-
+            public void MoveTo(List<int> nextPos)
+            {
+                //if (!lephetOda.Contains(nextPos)) return;
+                currentButton.Content = "";
+                
+                currentButton = negyzetek[nextPos[0], nextPos[1]];
+                currentButton.Content = uniCode;
+                UjraSzamolLehetsegesLepeseket(nextPos);
+                
+            }
             public Babu(Button[,] negyzetek,List<int> startPos, List<List<int>> stepList,string uniCode)
             {
-                
+                this.negyzetek = negyzetek;
                 this.stepList = stepList;
                 currentButton = negyzetek[startPos[0], startPos[1]];
+                this.uniCode = uniCode;
                 currentButton.Content = uniCode;
                 UjraSzamolLehetsegesLepeseket(startPos);
                 
@@ -92,6 +102,31 @@ namespace Sakklepesek_FarkasLevente
                 negyzetek[pos[0], pos[1]].Background = Brushes.Blue;
             }
         }
+        public void UjraSzinezTabla()
+        {
+            for (int i = 0; i < meret; i++)
+            {
+
+                for (int j = 0; j < meret; j++)
+                {
+
+
+                    if (j % 2 == 1 && i % 2 == 1)
+                    {
+                        negyzetek[i, j].Background = Brushes.Khaki;
+                    }
+                    else if (j % 2 == 0 && i % 2 == 0)
+                    {
+                        negyzetek[i, j].Background = Brushes.Khaki;
+                    }
+                    else
+                    {
+                        negyzetek[i, j].Background = Brushes.IndianRed;
+                    }
+
+                }
+            }
+        }
         private void TablaKialakitasa()
         {
             
@@ -112,7 +147,7 @@ namespace Sakklepesek_FarkasLevente
                     negyzet.Margin = new Thickness(tabla.Width / meret * j, tabla.Height / meret * i, 0, 0);
 
 
-                    
+                    negyzet.Click += Mozgat;
 
                     tabla.Children.Add(negyzet);
 
@@ -144,6 +179,13 @@ namespace Sakklepesek_FarkasLevente
                 }
             }
 
+        }
+
+        private void Mozgat(object sender, RoutedEventArgs e)
+        {
+            currentBabu.MoveTo(GetIndex((Button)sender));
+            UjraSzinezTabla();
+            HighLightButtons(currentBabu.lephetOda);
         }
         private List<int> GetIndex(Button button)
         {
