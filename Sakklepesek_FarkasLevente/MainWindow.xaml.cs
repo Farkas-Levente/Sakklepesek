@@ -124,13 +124,21 @@ namespace Sakklepesek_FarkasLevente
                 lephetOda = new List<List<int>>();
                 for (int i = 0; i < stepList.Count; i++)
                 {
-                    List<int> posok = new List<int>();
-                    posok.Add(currentPos[0] + stepList[i][0]);
-                    posok.Add(currentPos[1] + stepList[i][1]);
-                    //if(negyzetek[posok[0],posok[1]].Content == " ")
-                    //{
-                        lephetOda.Add(posok);
-                    //}
+                    try
+                    {
+                        List<int> posok = new List<int>();
+                        posok.Add(currentPos[0] + stepList[i][0]);
+                        posok.Add(currentPos[1] + stepList[i][1]);
+                        if (negyzetek[posok[0], posok[1]].Content.ToString() == " ")
+                        {
+                            lephetOda.Add(posok);
+                        }
+                    }
+                    catch(IndexOutOfRangeException)
+                    {
+
+                    }
+                    
                     
                 }
             }
