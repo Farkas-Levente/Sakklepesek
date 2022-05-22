@@ -18,20 +18,67 @@ namespace Sakklepesek_FarkasLevente
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
-        int meret = 10;
-        Button[,] negyzetek;
+        public int meret = 10;
+        public Button[,] negyzetek;
+
         public MainWindow()
         {
+            
             InitializeComponent();
             TablaKialakitasa();
+
+            List<int> startPos = new List<int>();
+            startPos.Add(3);
+            startPos.Add(1);
+
+            List<List<int>> stepList = new List<List<int>>();
+            List<int> step1 = new List<int>();
+            step1.Add(1);
+            step1.Add(1);
+            List<int> step2 = new List<int>();
+            step2.Add(2);
+            step2.Add(1);
+            stepList.Add(step1);
+            stepList.Add(step2);
+
+
+            Babu currentBabu = new Babu(negyzetek, startPos,stepList,"gyalog");
+            HighLightButtons(currentBabu.stepList);
+            //negyzetek[3,1].Background = Brushes.Blue;
+        }
+        
+
+        public class Babu
+        {
+           public string uniCode;
+           public Button currentButton;
+           public List<List<int>> stepList ;
+
+
+            public Babu(Button[,] negyzetek,List<int> startPos, List<List<int>> stepList,string uniCode)
+            {
+                this.stepList = stepList;
+                currentButton = negyzetek[startPos[0], startPos[1]];
+                currentButton.Content = uniCode;
+            }
+
+
         }
 
+        public void HighLightButtons(List<List<int>> stepList)
+        {
+            foreach (var pos in stepList)
+            {
 
-       
+                negyzetek[pos[0], pos[1]].Background = Brushes.Blue;
+            }
+        }
         private void TablaKialakitasa()
         {
+            
             tabla.Children.Clear();
             negyzetek = new Button[meret, meret];
             for (int i = 0; i < meret; i++)
@@ -82,5 +129,27 @@ namespace Sakklepesek_FarkasLevente
             }
 
         }
+        private List<int> GetIndex(Button button)
+        {
+            for (int i = 0; i < meret; i++)
+            {
+                for (int j = 0; j < meret; j++)
+                {
+                    if (negyzetek[i, j] == button)
+                    {
+
+                        List<int> indexek = new List<int>();
+                        indexek.Add(i);
+                        indexek.Add(j);
+
+                        return indexek;
+                    }
+                }
+            }
+            return null;
+        }
+       
+        
     }
+
 }
