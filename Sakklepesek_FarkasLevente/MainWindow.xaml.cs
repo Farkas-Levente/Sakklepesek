@@ -43,15 +43,17 @@ namespace Sakklepesek_FarkasLevente
             List<List<int>> stepList = new List<List<int>>();
             List<int> step1 = new List<int>();
             step1.Add(1);
-            step1.Add(1);
+            step1.Add(0);
+            stepList.Add(step1);
             List<int> step2 = new List<int>();
             step2.Add(-1);
-            step2.Add(-1);
-            stepList.Add(step1);
+            step2.Add(0);
+            
             stepList.Add(step2);
 
 
-            currentBabu = new Babu(negyzetek, startPos,stepList,"gyalog");
+            currentBabu = new Babu(negyzetek, startPos,stepList,"Gyalog");
+
             HighLightButtons(currentBabu.lephetOda);
             //negyzetek[3,1].Background = Brushes.Blue;
         }
@@ -68,6 +70,7 @@ namespace Sakklepesek_FarkasLevente
 
             public void MoveTo(List<int> nextPos)
             {
+                if (negyzetek[nextPos[0], nextPos[1]].Content.ToString() != " " ) return;
                 bool mehet = false;
                 foreach (var pos in lephetOda)
                 {
@@ -77,7 +80,8 @@ namespace Sakklepesek_FarkasLevente
                     }
                 }
                 if (!mehet) return;
-                currentButton.Content = "";
+                
+                currentButton.Content = " ";
                 
                 currentButton = negyzetek[nextPos[0], nextPos[1]];
                 currentButton.Content = uniCode;
@@ -111,11 +115,22 @@ namespace Sakklepesek_FarkasLevente
 
         public void HighLightButtons(List<List<int>> stepList)
         {
-            foreach (var pos in stepList)
-            {
+            
+            
+                foreach (var pos in stepList)
+                {
+                    try
+                    {
+                    negyzetek[pos[0], pos[1]].Background = Brushes.Blue;
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
 
-                negyzetek[pos[0], pos[1]].Background = Brushes.Blue;
-            }
+                    }
+                }
+            
+            
+            
         }
         public void UjraSzinezTabla()
         {
@@ -161,7 +176,7 @@ namespace Sakklepesek_FarkasLevente
                     negyzet.Height = tabla.Height / meret;
                     negyzet.Margin = new Thickness(tabla.Width / meret * j, tabla.Height / meret * i, 0, 0);
 
-
+                    negyzet.Content = " ";
                     negyzet.Click += Mozgat;
 
                     tabla.Children.Add(negyzet);
