@@ -32,7 +32,7 @@ namespace Sakklepesek_FarkasLevente
 
             List<int> startPos = new List<int>();
             startPos.Add(3);
-            startPos.Add(1);
+            startPos.Add(2);
 
             List<List<int>> stepList = new List<List<int>>();
             List<int> step1 = new List<int>();
@@ -46,7 +46,7 @@ namespace Sakklepesek_FarkasLevente
 
 
             Babu currentBabu = new Babu(negyzetek, startPos,stepList,"gyalog");
-            HighLightButtons(currentBabu.stepList);
+            HighLightButtons(currentBabu.lephetOda);
             //negyzetek[3,1].Background = Brushes.Blue;
         }
         
@@ -55,14 +55,26 @@ namespace Sakklepesek_FarkasLevente
         {
            public string uniCode;
            public Button currentButton;
-           public List<List<int>> stepList ;
+           public List<List<int>> stepList;
+
+           public List<List<int>> lephetOda;
 
 
             public Babu(Button[,] negyzetek,List<int> startPos, List<List<int>> stepList,string uniCode)
             {
+                lephetOda = new List<List<int>>();
                 this.stepList = stepList;
                 currentButton = negyzetek[startPos[0], startPos[1]];
                 currentButton.Content = uniCode;
+
+                for (int i = 0; i < stepList.Count; i++)
+                {
+                    List<int> posok = new List<int>();
+                    posok.Add(startPos[0] + stepList[i][0]);
+                    posok.Add(startPos[1] + stepList[i][1]);
+                    lephetOda.Add(posok);
+                }
+                
             }
 
 
