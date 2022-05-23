@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Name="ablak" Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Canvas Name="tabla" HorizontalAlignment="Left" Height="305" Margin="94,64,0,0" VerticalAlignment="Top" Width="588"/>
+        <Canvas Name="tabla" HorizontalAlignment="Left" Height="305" Margin="94,64,0,0" VerticalAlignment="Top" Width="500"/>
         <ComboBox Name="egysegValaszto" HorizontalAlignment="Left" Margin="301,20,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="EgysegValaszto_SelectionChanged"> </ComboBox>
         <Label Content="Válaszd ki az egységed:" HorizontalAlignment="Left" Margin="94,20,0,0" VerticalAlignment="Top" Width="196"/>
         <Label Content="Az egység a kékkel jelölt cellákra tud mozogni." HorizontalAlignment="Left" Margin="453,20,0,0" VerticalAlignment="Top" Width="274"/>

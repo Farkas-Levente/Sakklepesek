@@ -25,55 +25,125 @@ namespace Sakklepesek_FarkasLevente
         public Button[,] negyzetek;
         Babu currentBabu;
         Babu huszár;
+        Babu bástya;
+        Babu futó;
+        Babu feherGyalog;
+        Babu feketeGyalog;
         public MainWindow()
         {
             
             InitializeComponent();
 
 
-            egysegValaszto.Items.Add("Gyalog");
+            egysegValaszto.Items.Add("Fekete Gyalog");
+            egysegValaszto.Items.Add("Fehér Gyalog");
             egysegValaszto.Items.Add("Bástya");
             egysegValaszto.Items.Add("Futó");
             egysegValaszto.Items.Add("Huszár");
             TablaKialakitasa();
 
+            #region FeketeGyalog
+            //FeketeGyalog
             List<int> startPos = new List<int>();
-            startPos.Add(3);
-            startPos.Add(2);
+            startPos.Add(8);
+            startPos.Add(8);
 
             List<List<int>> stepList = new List<List<int>>();
             List<int> step1 = new List<int>();
-            step1.Add(1);
-            step1.Add(0);
-            stepList.Add(step1);
+            //step1.Add(1);
+            //step1.Add(0);
+            //stepList.Add(step1);
             List<int> step2 = new List<int>();
             step2.Add(-1);
             step2.Add(0);
-            
+
             stepList.Add(step2);
 
-            
-
-            currentBabu = new Babu(negyzetek, startPos,stepList,"Gyalog");
 
 
+            feketeGyalog = new Babu(negyzetek, startPos,stepList,"Fekete Gyalog");
+
+            #endregion
+
+            #region Huszár
+            //Huszár
 
             List<int> startPos2 = new List<int>();
-            startPos2.Add(0);
-            startPos2.Add(2);
+            startPos2.Add(5);
+            startPos2.Add(5);
 
             List<List<int>> stepList2 = new List<List<int>>();
             List<int> step3 = new List<int>();
-            step3.Add(1);
-            step3.Add(0);
+            step3.Add(2);
+            step3.Add(-1);
             stepList2.Add(step3);
             List<int> step4 = new List<int>();
-            step4.Add(-1);
-            step4.Add(0);
+            step4.Add(2);
+            step4.Add(1);
             stepList2.Add(step4);
 
-            huszár = new Babu(negyzetek, startPos2, stepList2, "Huszár");
+            List<int> step5 = new List<int>();
+            step5.Add(-2);
+            step5.Add(-1);
+            stepList2.Add(step5);
+            List<int> step6 = new List<int>();
+            step6.Add(-2);
+            step6.Add(1);
+            stepList2.Add(step6);
 
+            List<int> step7 = new List<int>();
+            step7.Add(1);
+            step7.Add(-2);
+            stepList2.Add(step7);
+            List<int> step8 = new List<int>();
+            step8.Add(1);
+            step8.Add(2);
+            stepList2.Add(step8);
+            List<int> step9 = new List<int>();
+            step9.Add(-1);
+            step9.Add(-2);
+            stepList2.Add(step9);
+            List<int> step10 = new List<int>();
+            step10.Add(-1);
+            step10.Add(2);
+            stepList2.Add(step10);
+
+            huszár = new Babu(negyzetek, startPos2, stepList2, "Huszár");
+            #endregion
+
+            #region Bástya
+            //Bástya
+            List<int> bástyaStartPos = new List<int>();
+            bástyaStartPos.Add(4);
+            bástyaStartPos.Add(2);
+
+            List<List<int>> bástyaSteplist = new List<List<int>>();
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(i);
+                bastyaStep1.Add(0);
+                bástyaSteplist.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(-i);
+                bastyaStep1.Add(0);
+                bástyaSteplist.Add(bastyaStep1);
+            }
+
+
+
+
+
+
+            bástya = new Babu(negyzetek, bástyaStartPos, bástyaSteplist, "Bástya");
+
+            #endregion
+
+            currentBabu = huszár;
+            egysegValaszto.SelectedItem = "Huszár";
             HighLightButtons(currentBabu.lephetOda);
             
         }
@@ -273,14 +343,36 @@ namespace Sakklepesek_FarkasLevente
 
         private void EgysegValaszto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            if(egysegValaszto.SelectedItem.ToString() == "Huszár")
+
+            if (egysegValaszto.SelectedItem.ToString() == "Huszár")
             {
-                //currentBabu = huszár;
+                currentBabu = huszár;
             }
+            else if (egysegValaszto.SelectedItem.ToString() == "Fekete Gyalog")
+            {
+                currentBabu = feketeGyalog;
+            }
+            else if (egysegValaszto.SelectedItem.ToString() == "Fehér Gyalog")
+            {
+                currentBabu = feherGyalog;
+            }
+            else if (egysegValaszto.SelectedItem.ToString() == "Futó")
+            {
+                currentBabu = futó;
+            }
+            else if (egysegValaszto.SelectedItem.ToString() == "Bástya")
+            {
+                currentBabu = bástya;
+            }
+            UjraSzinezTabla();
+            HighLightButtons(currentBabu.lephetOda);
 
+            UpdateCurrentPosText();
+        }
 
-            posText.Content = " "+ (GetIndex(currentBabu.currentButton)[0] + 1) + "," + (GetIndex(currentBabu.currentButton)[1] + 1);
+        private void UpdateCurrentPosText()
+        {
+            posText.Content = " " + (GetIndex(currentBabu.currentButton)[0] + 1) + "," + (GetIndex(currentBabu.currentButton)[1] + 1);
         }
     }
 
