@@ -132,6 +132,20 @@ namespace Sakklepesek_FarkasLevente
                 bastyaStep1.Add(0);
                 bástyaSteplist.Add(bastyaStep1);
             }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(0);
+                bastyaStep1.Add(i);
+                bástyaSteplist.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(0);
+                bastyaStep1.Add(-i);
+                bástyaSteplist.Add(bastyaStep1);
+            }
 
 
 
@@ -142,6 +156,42 @@ namespace Sakklepesek_FarkasLevente
 
             #endregion
 
+            #region Futó
+            List<int> futóStartPos = new List<int>();
+            futóStartPos.Add(7);
+            futóStartPos.Add(3);
+
+            List<List<int>> futóStepList = new List<List<int>>();
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(i);
+                futóStep1.Add(i);
+                futóStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(-i);
+                futóStep1.Add(-i);
+                futóStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(i);
+                futóStep1.Add(-i);
+                futóStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(-i);
+                futóStep1.Add(i);
+                futóStepList.Add(futóStep1);
+            }
+            futó = new Babu(negyzetek, futóStartPos, futóStepList, "Futó");
+            #endregion
             currentBabu = huszár;
             egysegValaszto.SelectedItem = "Huszár";
             HighLightButtons(currentBabu.lephetOda);
