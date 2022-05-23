@@ -212,12 +212,25 @@ namespace Sakklepesek_FarkasLevente
             currentBabu = huszár;
             egysegValaszto.SelectedItem = "Huszár";
             HighLightButtons(currentBabu.lephetOda);
+            UpdateLehetsegesLepesekText();
             //currentBabu.currentButton.Content = '\u265D';
 
 
         }
         
-
+        public void UpdateLehetsegesLepesekText()
+        {
+            lehetsegesLepesekText.Content = " ";
+            foreach (var item in currentBabu.lephetOda)
+            {
+                foreach (var pos in item)
+                {
+                    lehetsegesLepesekText.Content +=   pos+ ",";
+                }
+                lehetsegesLepesekText.Content += " | ";
+            }
+            
+        }
         public class Babu
         {
            public string uniCode;
@@ -388,6 +401,8 @@ namespace Sakklepesek_FarkasLevente
             
             UjraSzinezTabla();
             HighLightButtons(currentBabu.lephetOda);
+            UpdateCurrentPosText();
+            UpdateLehetsegesLepesekText();
             
         }
         private List<int> GetIndex(Button button)
@@ -438,6 +453,7 @@ namespace Sakklepesek_FarkasLevente
             HighLightButtons(currentBabu.lephetOda);
             
             UpdateCurrentPosText();
+            UpdateLehetsegesLepesekText();
         }
 
         private void UpdateCurrentPosText()
