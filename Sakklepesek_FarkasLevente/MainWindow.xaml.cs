@@ -65,6 +65,23 @@ namespace Sakklepesek_FarkasLevente
 
             #endregion
 
+            #region FehérGyalog
+            List<int> fehérGyalogStartPos = new List<int>();
+            fehérGyalogStartPos.Add(2);
+            fehérGyalogStartPos.Add(2);
+
+            List<List<int>> fehérStepList = new List<List<int>>();
+            List<int> feherStep = new List<int>();
+            feherStep.Add(1);
+            feherStep.Add(0);
+            fehérStepList.Add(feherStep);
+
+
+
+
+            feherGyalog = new Babu(negyzetek, fehérGyalogStartPos, fehérStepList, "Fehér Gyalog");
+            #endregion
+
             #region Huszár
             //Huszár
 
@@ -414,9 +431,10 @@ namespace Sakklepesek_FarkasLevente
             {
                 currentBabu = bástya;
             }
+            currentBabu.UjraSzamolLehetsegesLepeseket(GetIndex(currentBabu.currentButton));
             UjraSzinezTabla();
             HighLightButtons(currentBabu.lephetOda);
-
+            
             UpdateCurrentPosText();
         }
 
