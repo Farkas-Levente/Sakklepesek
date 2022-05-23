@@ -61,7 +61,7 @@ namespace Sakklepesek_FarkasLevente
 
 
 
-            feketeGyalog = new Babu(negyzetek, startPos,stepList,"Fekete Gyalog");
+            feketeGyalog = new Babu(negyzetek, startPos,stepList, "\u265F");
 
             #endregion
 
@@ -79,7 +79,7 @@ namespace Sakklepesek_FarkasLevente
 
 
 
-            feherGyalog = new Babu(negyzetek, fehérGyalogStartPos, fehérStepList, "Fehér Gyalog");
+            feherGyalog = new Babu(negyzetek, fehérGyalogStartPos, fehérStepList, "\u2659");
             #endregion
 
             #region Huszár
@@ -125,7 +125,7 @@ namespace Sakklepesek_FarkasLevente
             step10.Add(2);
             stepList2.Add(step10);
 
-            huszár = new Babu(negyzetek, startPos2, stepList2, "Huszár");
+            huszár = new Babu(negyzetek, startPos2, stepList2, "\u265E");
             #endregion
 
             #region Bástya
@@ -169,7 +169,7 @@ namespace Sakklepesek_FarkasLevente
 
 
 
-            bástya = new Babu(negyzetek, bástyaStartPos, bástyaSteplist, "Bástya");
+            bástya = new Babu(negyzetek, bástyaStartPos, bástyaSteplist, "\u265C");
 
             #endregion
 
@@ -207,12 +207,14 @@ namespace Sakklepesek_FarkasLevente
                 futóStep1.Add(i);
                 futóStepList.Add(futóStep1);
             }
-            futó = new Babu(negyzetek, futóStartPos, futóStepList, "Futó");
+            futó = new Babu(negyzetek, futóStartPos, futóStepList, "\u265D");
             #endregion
             currentBabu = huszár;
             egysegValaszto.SelectedItem = "Huszár";
             HighLightButtons(currentBabu.lephetOda);
-            
+            //currentBabu.currentButton.Content = '\u265D';
+
+
         }
         
 
