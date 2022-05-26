@@ -29,6 +29,8 @@ namespace Sakklepesek_FarkasLevente
         Babu futó;
         Babu feherGyalog;
         Babu feketeGyalog;
+        Babu kiralyno;
+        Babu kiraly;
         public MainWindow()
         {
             
@@ -40,6 +42,8 @@ namespace Sakklepesek_FarkasLevente
             egysegValaszto.Items.Add("Bástya");
             egysegValaszto.Items.Add("Futó");
             egysegValaszto.Items.Add("Huszár");
+            egysegValaszto.Items.Add("Királynő");
+            egysegValaszto.Items.Add("Király");
             TablaKialakitasa();
 
             #region FeketeGyalog
@@ -171,6 +175,139 @@ namespace Sakklepesek_FarkasLevente
 
             bástya = new Babu(negyzetek, bástyaStartPos, bástyaSteplist, "\u265C");
 
+            #endregion
+
+            #region Királynő
+            List<int> kiralynőStartPos = new List<int>();
+            kiralynőStartPos.Add(2);
+            kiralynőStartPos.Add(8);
+
+            List<List<int>> kiralynőStepList = new List<List<int>>();
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(i);
+                bastyaStep1.Add(0);
+                kiralynőStepList.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(-i);
+                bastyaStep1.Add(0);
+                kiralynőStepList.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(0);
+                bastyaStep1.Add(i);
+                kiralynőStepList.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(0);
+                bastyaStep1.Add(-i);
+                kiralynőStepList.Add(bastyaStep1);
+            }
+
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(i);
+                futóStep1.Add(i);
+                kiralynőStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(-i);
+                futóStep1.Add(-i);
+                kiralynőStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(i);
+                futóStep1.Add(-i);
+                kiralynőStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 10; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(-i);
+                futóStep1.Add(i);
+                kiralynőStepList.Add(futóStep1);
+            }
+            kiralyno = new Babu(negyzetek, kiralynőStartPos, kiralynőStepList, "\u265B");
+            #endregion
+
+
+            #region Király
+            List<int> kiralyStartPos = new List<int>();
+            kiralyStartPos.Add(4);
+            kiralyStartPos.Add(3);
+
+            List<List<int>> kiralyStepList = new List<List<int>>();
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(i);
+                bastyaStep1.Add(0);
+                kiralyStepList.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(-i);
+                bastyaStep1.Add(0);
+                kiralyStepList.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(0);
+                bastyaStep1.Add(i);
+                kiralyStepList.Add(bastyaStep1);
+            }
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> bastyaStep1 = new List<int>();
+                bastyaStep1.Add(0);
+                bastyaStep1.Add(-i);
+                kiralyStepList.Add(bastyaStep1);
+            }
+
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(i);
+                futóStep1.Add(i);
+                kiralyStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(-i);
+                futóStep1.Add(-i);
+                kiralyStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(i);
+                futóStep1.Add(-i);
+                kiralyStepList.Add(futóStep1);
+            }
+            for (int i = 1; i <= 1; i++)
+            {
+                List<int> futóStep1 = new List<int>();
+                futóStep1.Add(-i);
+                futóStep1.Add(i);
+                kiralyStepList.Add(futóStep1);
+            }
+            kiraly = new Babu(negyzetek, kiralyStartPos, kiralyStepList, "\u265A");
             #endregion
 
             #region Futó
@@ -447,6 +584,14 @@ namespace Sakklepesek_FarkasLevente
             else if (egysegValaszto.SelectedItem.ToString() == "Bástya")
             {
                 currentBabu = bástya;
+            }
+            else if(egysegValaszto.SelectedItem.ToString() == "Királynő")
+            {
+                currentBabu = kiralyno;
+            }
+            else if(egysegValaszto.SelectedItem.ToString() == "Király")
+            {
+                currentBabu = kiraly;
             }
             currentBabu.UjraSzamolLehetsegesLepeseket(GetIndex(currentBabu.currentButton));
             UjraSzinezTabla();
